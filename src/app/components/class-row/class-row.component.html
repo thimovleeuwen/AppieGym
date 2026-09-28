@@ -1,0 +1,67 @@
+<div
+  class="group flex flex-col gap-4 rounded-xl border border-ink-line bg-ink-soft/60 p-4 transition sm:flex-row sm:items-center sm:gap-6 sm:p-5"
+  [class]="past() ? 'opacity-40' : 'hover:border-crimson/40'"
+>
+  <div class="flex items-baseline gap-3 sm:w-36 sm:flex-col sm:items-start sm:gap-0">
+    <span class="font-display text-2xl text-paper">{{ classTemplate().time }}</span>
+    <span class="text-xs text-paper/40">
+      {{ timeRangeLabel() }}
+    </span>
+  </div>
+
+  <div class="flex-1">
+    <div class="flex flex-wrap items-center gap-2">
+      <h3 class="font-display text-lg uppercase tracking-wide text-paper sm:text-xl">
+        {{ nameLabel() }}
+      </h3>
+      <span
+        class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ring-1 ring-inset"
+        [class]="disciplineColors[classTemplate().discipline]"
+      >
+        {{ disciplineLabel() }}
+      </span>
+    </div>
+    <p class="mt-1 text-sm text-paper/50">
+      {{ classTemplate().coach }} · {{ levelLabel() }}
+    </p>
+  </div>
+
+  <div class="flex items-center justify-between gap-4 sm:w-56 sm:justify-end">
+    <div class="text-right">
+      @if (past()) {
+        <span class="text-xs font-semibold uppercase tracking-wide text-paper/40">
+          {{ t().classEnded }}
+        </span>
+      } @else if (full()) {
+        <span class="text-xs font-semibold uppercase tracking-wide text-crimson-glow">
+          {{ t().fullyBooked }}
+        </span>
+      } @else {
+        <span
+          class="text-xs font-semibold uppercase tracking-wide"
+          [class]="almostFull() ? 'text-amber-400' : 'text-paper/50'"
+        >
+          {{ spotsLeftLabel() }}
+        </span>
+      }
+    </div>
+
+    <button
+      (click)="handleClick()"
+      [disabled]="past() || (full() && !reserved())"
+      class="min-w-[110px] rounded-lg px-4 py-2.5 text-sm font-bold uppercase tracking-wide transition disabled:cursor-not-allowed disabled:opacity-40"
+      [class]="reserved()
+        ? 'border border-crimson bg-crimson/10 text-crimson-glow hover:bg-crimson/20'
+        : 'bg-crimson text-white hover:bg-crimson-dark'"
+    >
+      {{ reserved() ? t().reserved : full() ? t().full : t().reserve }}
+    </button>
+  </div>
+
+  <app-member-modal
+    [open]="modalOpen()"
+    [pendingReservation]="pendingReservation()"
+    (closed)="modalOpen.set(false)"
+    (signedIn)="modalOpen.set(false)"
+  />
+</div>

@@ -1,0 +1,51 @@
+<footer id="contact" class="border-t border-ink-line bg-ink-soft">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-12 md:grid-cols-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="flex h-9 w-9 items-center justify-center rounded-md bg-crimson font-display text-lg text-white">
+            A
+          </span>
+          <span class="font-display text-xl uppercase tracking-wide text-paper">
+            Appie <span class="text-crimson">Gym</span>
+          </span>
+        </div>
+        <p class="mt-4 max-w-xs text-sm text-paper/50">{{ t().tagline }}</p>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-paper/40">{{ t().explore }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a routerLink="/" class="text-paper/60 hover:text-crimson">{{ t().home }}</a></li>
+          <li><a routerLink="/schedule" class="text-paper/60 hover:text-crimson">{{ t().weeklySchedule }}</a></li>
+          <li><a href="/#programs" class="text-paper/60 hover:text-crimson">{{ t().programs }}</a></li>
+          <li><a href="/#pricing" class="text-paper/60 hover:text-crimson">{{ t().pricing }}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-paper/40">{{ t().visitUs }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-paper/60">
+          <li>Pretoriusstraat 2H</li>
+          <li>1092 GE Amsterdam</li>
+          <li><a href="tel:+31650514751" class="hover:text-crimson">06 5051 4751</a></li>
+          <li><a href="mailto:akhisportgym@gmail.com" class="hover:text-crimson">akhisportgym&#64;gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-paper/40">{{ t().openingHours }}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-paper/60">
+          <li class="flex justify-between gap-4"><span>{{ t().monFri }}</span><span>06:00 – 22:30</span></li>
+          <li class="flex justify-between gap-4"><span>{{ t().saturday }}</span><span>08:00 – 14:00</span></li>
+          <li class="flex justify-between gap-4"><span>{{ t().sunday }}</span><span>09:00 – 13:00</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-ink-line pt-8 text-xs text-paper/40 sm:flex-row">
+      <p>&copy; {{ year }} Appie Gym. {{ t().rightsReserved }}</p>
+      <p>{{ t().builtFor }}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,64 @@
+@if (open()) {
+  <div
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+    (click)="close()"
+  >
+    <div
+      class="w-full max-w-md rounded-2xl border border-ink-line bg-ink-soft p-6 shadow-2xl shadow-black/50 sm:p-8"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="mb-1 text-xs font-semibold uppercase tracking-[0.2em] text-crimson">
+        {{ t().badge }}
+      </div>
+      <h2 class="font-display text-3xl uppercase text-paper">{{ t().title }}</h2>
+      <p class="mt-2 text-sm text-paper/60">{{ t().subtitle }}</p>
+
+      <form (ngSubmit)="handleSubmit()" class="mt-6 space-y-4">
+        <div>
+          <label class="mb-1.5 block text-xs font-medium uppercase tracking-wide text-paper/50">
+            {{ t().fullName }}
+          </label>
+          <input
+            [ngModel]="name()"
+            (ngModelChange)="name.set($event)"
+            name="name"
+            [placeholder]="t().namePlaceholder"
+            class="w-full rounded-lg border border-ink-line bg-ink px-4 py-2.5 text-paper placeholder:text-paper/30 outline-none focus:border-crimson"
+          />
+        </div>
+        <div>
+          <label class="mb-1.5 block text-xs font-medium uppercase tracking-wide text-paper/50">
+            {{ t().email }}
+          </label>
+          <input
+            type="email"
+            [ngModel]="email()"
+            (ngModelChange)="email.set($event)"
+            name="email"
+            [placeholder]="t().emailPlaceholder"
+            class="w-full rounded-lg border border-ink-line bg-ink px-4 py-2.5 text-paper placeholder:text-paper/30 outline-none focus:border-crimson"
+          />
+        </div>
+        @if (error()) {
+          <p class="text-sm text-crimson-glow">{{ error() }}</p>
+        }
+
+        <div class="flex gap-3 pt-2">
+          <button
+            type="button"
+            (click)="close()"
+            class="flex-1 rounded-lg border border-ink-line px-4 py-2.5 text-sm font-semibold text-paper/70 transition hover:bg-white/5"
+          >
+            {{ t().cancel }}
+          </button>
+          <button
+            type="submit"
+            class="flex-1 rounded-lg bg-crimson px-4 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-crimson-dark"
+          >
+            {{ t().continue }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}
