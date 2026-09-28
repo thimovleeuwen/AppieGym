@@ -70,7 +70,8 @@ export interface AppDictionary {
     reserve: string;
   };
   schedule: {
-    badge: string;
+    thisWeek: string;
+    nextWeek: string;
     title: string;
     subtitle: string;
     allFilter: string;

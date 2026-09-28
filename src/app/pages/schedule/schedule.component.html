@@ -1,15 +1,34 @@
 <div class="bg-noise">
   <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
     <div class="mb-10 border-b border-ink-line pb-8">
-      <span class="text-xs font-bold uppercase tracking-[0.3em] text-crimson">{{ t().badge }}</span>
+      <span class="text-xs font-bold uppercase tracking-[0.3em] text-crimson">
+        {{ weekOffset() === 0 ? t().thisWeek : t().nextWeek }}
+      </span>
       <h1 class="mt-3 font-display text-4xl uppercase leading-none text-paper sm:text-5xl">
         {{ t().title }}
       </h1>
       <p class="mt-3 max-w-xl text-paper/60">{{ t().subtitle }}</p>
     </div>
 
+    <div class="mb-6 inline-flex gap-1 rounded-xl border border-ink-line bg-ink-soft p-1">
+      <button
+        (click)="selectWeek(0)"
+        class="rounded-lg px-4 py-2 text-sm font-bold uppercase tracking-wide transition"
+        [class]="weekOffset() === 0 ? 'bg-crimson text-white' : 'text-paper/60 hover:text-paper'"
+      >
+        {{ t().thisWeek }}
+      </button>
+      <button
+        (click)="selectWeek(1)"
+        class="rounded-lg px-4 py-2 text-sm font-bold uppercase tracking-wide transition"
+        [class]="weekOffset() === 1 ? 'bg-crimson text-white' : 'text-paper/60 hover:text-paper'"
+      >
+        {{ t().nextWeek }}
+      </button>
+    </div>
+
     <div class="mb-6 flex gap-2 overflow-x-auto scrollbar-none">
-      @for (d of weekDates; track d; let i = $index) {
+      @for (d of weekDates(); track d; let i = $index) {
         <button
           (click)="dayIndex.set(i)"
           class="flex shrink-0 flex-col items-center rounded-xl border px-4 py-2.5 transition"
@@ -19,7 +38,7 @@
         >
           <span class="text-[11px] font-bold uppercase tracking-widest">{{ t().weekdaysShort[i] }}</span>
           <span class="mt-0.5 text-sm font-semibold">{{ dayLabel(d) }}</span>
-          @if (i === todayIndex) {
+          @if (weekOffset() === 0 && i === todayIndexInCurrentWeek) {
             <span class="mt-1 h-1 w-1 rounded-full" [class]="i === dayIndex() ? 'bg-white' : 'bg-crimson'"></span>
           }
         </button>

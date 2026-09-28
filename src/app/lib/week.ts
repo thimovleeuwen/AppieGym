@@ -9,14 +9,17 @@ function toISODate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-/** Returns the 7 dates (Mon → Sun) of the current week as ISO strings. */
-export function getCurrentWeekDates(): string[] {
+/**
+ * Returns the 7 dates (Mon → Sun) of a week as ISO strings.
+ * `weekOffset` 0 = the current week, 1 = next week, etc.
+ */
+export function getWeekDates(weekOffset = 0): string[] {
   const now = new Date();
   const jsDay = now.getDay(); // 0 = Sunday ... 6 = Saturday
   const mondayOffset = jsDay === 0 ? -6 : 1 - jsDay;
   const monday = new Date(now);
   monday.setHours(0, 0, 0, 0);
-  monday.setDate(now.getDate() + mondayOffset);
+  monday.setDate(now.getDate() + mondayOffset + weekOffset * 7);
 
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date(monday);

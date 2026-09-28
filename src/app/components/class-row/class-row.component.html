@@ -26,8 +26,8 @@
     </p>
   </div>
 
-  <div class="flex items-center justify-between gap-4 sm:w-56 sm:justify-end">
-    <div class="text-right">
+  <div class="flex flex-col gap-2 sm:w-56 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+    <div class="text-left sm:text-right">
       @if (past()) {
         <span class="text-xs font-semibold uppercase tracking-wide text-paper/40">
           {{ t().classEnded }}
@@ -49,7 +49,7 @@
     <button
       (click)="handleClick()"
       [disabled]="past() || (full() && !reserved())"
-      class="min-w-[110px] rounded-lg px-4 py-2.5 text-sm font-bold uppercase tracking-wide transition disabled:cursor-not-allowed disabled:opacity-40"
+      class="w-full rounded-lg px-4 py-2.5 text-sm font-bold uppercase tracking-wide transition disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-[110px]"
       [class]="reserved()
         ? 'border border-crimson bg-crimson/10 text-crimson-glow hover:bg-crimson/20'
         : 'bg-crimson text-white hover:bg-crimson-dark'"

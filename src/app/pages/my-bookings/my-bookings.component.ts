@@ -5,7 +5,7 @@ import type { ClassTemplate, Reservation } from "../../data/types";
 import { MemberModalComponent } from "../../components/member-modal/member-modal.component";
 import { BookingService } from "../../services/booking.service";
 import { TranslationService } from "../../services/translation.service";
-import { formatTimeRange, getCurrentWeekDates, isPastDateTime } from "../../lib/week";
+import { formatTimeRange, getWeekDates, isPastDateTime } from "../../lib/week";
 
 interface ReservedClass {
   reservation: Reservation;
@@ -24,7 +24,8 @@ export class MyBookingsComponent {
   readonly isPastDateTime = isPastDateTime;
 
   readonly modalOpen = signal(false);
-  private readonly weekDates = getCurrentWeekDates();
+  /** Every date the schedule currently allows booking (this week + next week). */
+  private readonly bookableDates = [...getWeekDates(0), ...getWeekDates(1)];
 
   readonly t = computed(() => this.translation.dict().myBookings);
 
@@ -33,7 +34,7 @@ export class MyBookingsComponent {
     if (!member) return [];
     return this.booking
       .reservations()
-      .filter((r) => r.memberEmail === member.email && this.weekDates.includes(r.dateISO))
+      .filter((r) => r.memberEmail === member.email && this.bookableDates.includes(r.dateISO))
       .map((r) => ({ reservation: r, classTemplate: CLASSES.find((c) => c.id === r.classId)! }))
       .filter((x) => x.classTemplate)
       .sort((a, b) => {

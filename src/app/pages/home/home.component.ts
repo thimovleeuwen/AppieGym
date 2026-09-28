@@ -3,7 +3,7 @@ import { RouterLink } from "@angular/router";
 import { CLASSES, DISCIPLINE_COLORS } from "../../data/schedule";
 import type { ClassTemplate } from "../../data/types";
 import { TranslationService } from "../../services/translation.service";
-import { formatTimeRange, getCurrentWeekDates, isToday } from "../../lib/week";
+import { formatTimeRange, getWeekDates, isToday } from "../../lib/week";
 
 @Component({
   selector: "app-home",
@@ -21,7 +21,7 @@ export class HomeComponent {
   private readonly todayDayIndex: number;
 
   constructor(readonly translation: TranslationService) {
-    const weekDates = getCurrentWeekDates();
+    const weekDates = getWeekDates(0);
     const todayIndex = weekDates.findIndex(isToday);
     this.todayDayIndex = todayIndex >= 0 ? todayIndex : 0;
     this.todayIso = weekDates[this.todayDayIndex];

@@ -52,7 +52,8 @@ export const EN: AppDictionary = {
     reserve: "Reserve",
   },
   schedule: {
-    badge: "This week",
+    thisWeek: "This week",
+    nextWeek: "Next week",
     title: "Class schedule",
     subtitle:
       "Pick a day, find your class and lock in your spot. Cancel anytime before the class starts if your plans change.",
@@ -89,8 +90,8 @@ export const EN: AppDictionary = {
       "We use your name and email to keep track of your reservations. It only takes a second.",
     signInButton: "Member sign-in",
     welcomeTemplate: "Welcome back, {{name}}",
-    subtitle: "Here's everything you've reserved for this week.",
-    emptyText: "You haven't reserved any classes yet this week.",
+    subtitle: "Here's everything you've reserved for this week and next.",
+    emptyText: "You haven't reserved any classes yet.",
     browseSchedule: "Browse the schedule",
     cancel: "Cancel",
     completed: "Completed",

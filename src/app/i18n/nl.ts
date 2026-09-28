@@ -52,7 +52,8 @@ export const NL: AppDictionary = {
     reserve: "Reserveren",
   },
   schedule: {
-    badge: "Deze week",
+    thisWeek: "Deze week",
+    nextWeek: "Volgende week",
     title: "Lesrooster",
     subtitle:
       "Kies een dag, vind je les en zet je plek vast. Annuleer altijd voordat de les begint als je planning verandert.",
@@ -89,8 +90,8 @@ export const NL: AppDictionary = {
       "We gebruiken je naam en e-mailadres om je reserveringen bij te houden. Het kost maar een paar seconden.",
     signInButton: "Inloggen als lid",
     welcomeTemplate: "Welkom terug, {{name}}",
-    subtitle: "Hier vind je alles wat je deze week hebt gereserveerd.",
-    emptyText: "Je hebt deze week nog geen lessen gereserveerd.",
+    subtitle: "Hier vind je alles wat je voor deze en volgende week hebt gereserveerd.",
+    emptyText: "Je hebt nog geen lessen gereserveerd.",
     browseSchedule: "Bekijk het rooster",
     cancel: "Annuleren",
     completed: "Afgerond",
