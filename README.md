@@ -2,9 +2,12 @@
 
 A modern, dark kickboxing-gym website built with Angular, TypeScript, and Tailwind CSS.
 
+Live at **https://thimovleeuwen.github.io/AppieGym/**
+
 ## Features
 
-- **Home page** — hero, programs (Kickboxing / Boxing / MMA / Conditioning), today's classes, pricing, and contact/footer.
+- **Home page** — hero, programs (Kickboxing / Bag Training / MMA / Conditioning), today's classes, pricing, and contact/footer.
+- **Bilingual** — English/Dutch language switcher, persisted per visitor.
 - **Weekly schedule** (`/schedule`) — browse this week's classes by day and discipline, see live spots-left, and reserve a class.
 - **Member sign-in** — a lightweight name + email check-in (no password) used to attribute reservations. Stored in the browser's `localStorage`.
 - **My Bookings** (`/my-bookings`) — see and cancel your reservations for the week.
@@ -34,3 +37,9 @@ This is a front-end prototype: there is no backend, so reservations are stored p
 - `npm start` — start the dev server (`ng serve`)
 - `npm run build` — build for production
 - `npm test` — run unit tests (Karma/Jasmine)
+
+## Deployment
+
+Pushing to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the app with `--base-href /AppieGym/` and publishes it to GitHub Pages. A copy of `index.html` is deployed as `404.html` too, so client-side routes (e.g. `/schedule`) keep working on refresh or direct link.
+
+This requires GitHub Pages to be set to **Settings → Pages → Source: GitHub Actions** (one-time setup) on this repo.
